@@ -1,0 +1,26 @@
+<!-- Custom rules: Fail2Ban events (Section 07). IDs 100100-100199 reserved. -->
+<group name="fail2ban,">
+
+  <rule id="100100" level="0">
+    <decoded_as>fail2ban</decoded_as>
+    <description>Fail2Ban event.</description>
+  </rule>
+
+  <rule id="100101" level="8">
+    <if_sid>100100</if_sid>
+    <action>Ban</action>
+    <description>Fail2Ban: $(srcip) banned in jail $(jail).</description>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+    <group>fail2ban,ban,authentication_failures,</group>
+  </rule>
+
+  <rule id="100102" level="3">
+    <if_sid>100100</if_sid>
+    <action>Unban</action>
+    <description>Fail2Ban: $(srcip) unbanned in jail $(jail).</description>
+    <group>fail2ban,unban,</group>
+  </rule>
+
+</group>

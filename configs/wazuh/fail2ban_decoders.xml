@@ -1,0 +1,8 @@
+<!-- Custom decoder: Fail2Ban actions log (Section 07) -->
+<!-- Source line: 2026-10-04 20:38:52,262 fail2ban.actions [889]: NOTICE [sshd] Ban 203.0.113.50 -->
+<!-- Wazuh strips the timestamp and module name before decoding, so we anchor on "[PID]: LEVEL " -->
+<decoder name="fail2ban">
+  <prematch type="pcre2">\[\d+\]:\s+\w+\s+</prematch>
+  <regex type="pcre2">\[([^\]]+)\]\s+(\w+)\s+(\d{1,3}(?:\.\d{1,3}){3})</regex>
+  <order>jail,action,srcip</order>
+</decoder>
